@@ -22,7 +22,7 @@ public class UtilisateurController {
         return new ResponseEntity<>(this.utilisateurService.list(), HttpStatus.OK);
     }
 
-    @GetMapping("/:idUtilisateur/solde")
+    @GetMapping("/{idUtilisateur}/solde")
     public ResponseEntity getSolde(@PathVariable int idUtilisateur) {
         return new ResponseEntity<>(this.utilisateurService.findById(idUtilisateur), HttpStatus.OK);
     }
