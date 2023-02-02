@@ -7,7 +7,6 @@ import lombok.*;
 public class Rencherir {
 
     private double montant;
-    private Utilisateur user;
+    private Utilisateur utilisateur;
     private Lot lot;
-
 }

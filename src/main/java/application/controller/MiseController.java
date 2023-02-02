@@ -19,11 +19,7 @@ public class MiseController {
 
     @PostMapping("")
     public ResponseEntity create(@RequestBody Rencherir rencherir) {
-        try {
-            return new ResponseEntity<>(this.miseService.creer(rencherir), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.OK);
-        }
+        return new ResponseEntity<>(this.miseService.insert(rencherir), HttpStatus.OK);
     }
 
     @GetMapping("")

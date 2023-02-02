@@ -26,24 +26,10 @@ public class UtilisateurController {
     public ResponseEntity login(@RequestBody Utilisateur utilisateur){
         Utilisateur u = utilisateurService.login(utilisateur);
         if(u != null){
-            // utilisateurService.generateToken(u);
             return new ResponseEntity<>(u, HttpStatus.OK);
         }else{
             return new ResponseEntity<>(new ErrorMessage(101, "Utilisateur not found"), HttpStatus.NOT_FOUND);
         }
     }
-
-    
-    @PostMapping("/inscription")
-    public ResponseEntity inscription(@RequestBody Utilisateur utilisateur){
-        Utilisateur u = utilisateurService.inscription(utilisateur);
-       try{
-            
-            return new ResponseEntity<>(u,HttpStatus.OK);
-        }
-        catch(Exception e){
-            return new ResponseEntity<>(new ErrorMessage(101, "Utilisateur not found"), HttpStatus.NOT_FOUND);
-        }
-      
-    }
 }
+    

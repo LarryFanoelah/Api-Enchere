@@ -14,12 +14,6 @@ public class UtilisateurService {
         this.utilisateurRepo = utilisateurRepo;
     }
 
-    public Utilisateur inscription(Utilisateur utilisateur) {
-        // TODO Auto-generated method stub
-        return utilisateurRepo.save(utilisateur);
-
-    }
-
     public List<Utilisateur> list() {
         return this.utilisateurRepo.findAll();
     }

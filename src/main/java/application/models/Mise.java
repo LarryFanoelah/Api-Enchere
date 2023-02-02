@@ -1,9 +1,6 @@
 package application.models;
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import application.utils.annotation.IdTable;
 import lombok.*;
 
@@ -26,6 +23,5 @@ public class Mise {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_lot")
-    @JsonIgnore
     private Lot lot;
 }

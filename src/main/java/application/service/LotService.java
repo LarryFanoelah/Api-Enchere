@@ -3,13 +3,9 @@ package application.service;
 import org.springframework.stereotype.Service;
 import application.models.Lot;
 import application.models.Searching;
-
-import java.time.LocalDateTime;
 import java.util.*;
-import javax.management.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -18,7 +14,6 @@ import javax.persistence.criteria.Root;
 import application.repository.LotRepo;
 
 @Service
-
 public class LotService {
     private final LotRepo lotRepo;
 
@@ -32,8 +27,6 @@ public class LotService {
     public List<Lot> list() {
         return this.lotRepo.list();
     }
-
- 
 
     public List<Lot> search(Searching s) {
 
@@ -63,27 +56,26 @@ public class LotService {
             Predicate min = builder.greaterThanOrEqualTo(lot.get("prixMinimal"), s.getPrix_min());
             criteria = builder.and(criteria, min);
         }
-        if (s.isStatut() == true) {
-            Predicate statut = builder.equal(lot.get("statut"), s.isStatut());
-            criteria = builder.and(criteria, statut);
+        if (!s.getStatut().equals("null")) {
+            if (s.getStatut().equals("true")) {
+                Boolean acces = true;
+                Predicate statut = builder.equal(lot.get("statut"), acces);
+                criteria = builder.and(criteria, statut);
+            } else if (s.getStatut().equals("false")) {
+                Boolean acces = false;
+                Predicate statut = builder.equal(lot.get("statut"), acces);
+                criteria = builder.and(criteria, statut);
+            }
         }
         query.select(lot).where(criteria);
         return entityManager.createQuery(query).getResultList();
-       
     }
 
-    public List<Lot> findById(int id) {
+    public Lot findById(int id) {
         return this.lotRepo.findById(id);
     }
 
     public List<Lot> myEnchere(int id) {
         return this.lotRepo.myEnchere(id);
     }
-
-    public  void insertEnchere(Lot lot) {
-        lotRepo.insertEnchere(lot.getDateDebut(), lot.getDure(), lot.getPrixMinimal(),
-                lot.getUtilisateur(), lot.getNom(), lot.getDescri(), lot.isStatut(), lot.getCategorie());
-    }
-
-
 }

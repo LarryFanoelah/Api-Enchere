@@ -1,6 +1,6 @@
 package application.models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.*;
@@ -18,7 +18,7 @@ public class Lot {
     private int id_lot;
 
     @Column(name = "date_debut")
-    private LocalDateTime dateDebut;
+    private LocalDate dateDebut;
 
     @Column(name = "duree")
     private int dure;

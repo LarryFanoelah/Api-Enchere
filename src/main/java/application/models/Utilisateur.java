@@ -10,8 +10,6 @@ import lombok.*;
 @Getter
 @Table(name = "utilisateur")
 public class Utilisateur {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_utilisateur;
@@ -30,21 +28,5 @@ public class Utilisateur {
 
     @Column(name = "solde")
     private double solde;
-
-    public Object save(Utilisateur utilisateur) {
-        return null;
-    }
-
-    public Utilisateur () {}
-    
-    public Utilisateur(int id_utilisateur,String nom,String email,String mdp,boolean administrateur,Double solde) {
-        this.id_utilisateur = id_utilisateur;
-        this.nom = nom;
-        this.email =email;
-        this.mdp = mdp;
-        this.administrateur = administrateur;
-        this.solde = solde;
-    }
-    
 
 }
