@@ -16,6 +16,6 @@ public interface UtilisateurRepo extends JpaRepository<Utilisateur, Integer> {
     public String generateToken(@Param("id_utilisateur") int id);
 
     @Query(value = "SELECT * FROM utilisateur WHERE id_utilisateur = (:id_utilisateur)", nativeQuery = true)
-    public Utilisateur getById(@Param("id_utilisateur") int id);
+    public Utilisateur findById(@Param("id_utilisateur") int id);
 
 }

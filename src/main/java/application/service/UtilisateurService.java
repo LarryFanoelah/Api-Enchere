@@ -23,7 +23,7 @@ public class UtilisateurService {
     }
 
     public Utilisateur findById(int idUtilisateur) {
-        return utilisateurRepo.getById(idUtilisateur);
+        return utilisateurRepo.findById(idUtilisateur);
     }
 
     // public void generateToken(Utilisateur utilisateur) {

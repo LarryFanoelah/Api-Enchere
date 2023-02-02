@@ -13,7 +13,7 @@ public interface RechargementRepo extends JpaRepository<Rechargement, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "insert into rechargement(montant,etat,id_utilisateur) values (?1,?2,2)", nativeQuery = true)
-    public void recharger(Double montant, int etat);
+    @Query(value = "insert into rechargement(montant,etat,id_utilisateur) values (?1,?2,?3)", nativeQuery = true)
+    public void recharger(Double montant, int etat , int id_utilisateur);
 
 }
