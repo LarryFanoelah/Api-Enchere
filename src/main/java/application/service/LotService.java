@@ -40,9 +40,13 @@ public class LotService {
                     "%" + s.getMotCle().toLowerCase() + "%");
             criteria = builder.and(criteria, nameLike);
         }
-        if (s.getDate() != null) {
-            Predicate date = builder.lessThanOrEqualTo(lot.get("dateDebut"), s.getDate());
-            criteria = builder.and(criteria, date);
+        if (s.getDateFin() != null) {
+            Predicate dateFin = builder.lessThanOrEqualTo(lot.get("dateDebut"), s.getDateFin());
+            criteria = builder.and(criteria, dateFin);
+        }
+        if (s.getDateDebut() != null) {
+            Predicate dateDebut = builder.greaterThanOrEqualTo(lot.get("dateDebut"), s.getDateDebut());
+            criteria = builder.and(criteria, dateDebut);
         }
         if (s.getId_categorie() != 0) {
             Predicate categorie = builder.equal(lot.get("categorie").get("id_categorie"), s.getId_categorie());
