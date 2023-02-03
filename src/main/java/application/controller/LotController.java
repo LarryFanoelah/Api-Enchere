@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import application.models.Searching;
-import application.models.Utilisateur;
 import application.service.LotService;
+import application.models.Lot;
 
 @RestController
 @RequestMapping("/encheres")
@@ -36,5 +36,11 @@ public class LotController {
     public ResponseEntity mine(@PathVariable int id) {
         return new ResponseEntity<>(this.lotService.myEnchere(id), HttpStatus.OK);
     }
-    
+
+    @PostMapping("/insertion")
+    public ResponseEntity insertEnchere(@RequestBody Lot lot) throws Exception {
+                
+        return new ResponseEntity<>(this.lotService.save(lot),HttpStatus.OK);
+
+    }
 }

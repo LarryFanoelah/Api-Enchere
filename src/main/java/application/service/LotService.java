@@ -3,6 +3,7 @@ package application.service;
 import org.springframework.stereotype.Service;
 import application.models.Lot;
 import application.models.Searching;
+import application.models.Message;
 import java.util.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -82,4 +83,11 @@ public class LotService {
     public List<Lot> myEnchere(int id) {
         return this.lotRepo.myEnchere(id);
     }
+
+    public Message save (Lot lot) throws Exception{
+        this.lotRepo.insertEnchere(lot.getDure(),lot.getPrixMinimal(),lot.getUtilisateur().getId_utilisateur(),lot.getNom(),lot.getDescri(),lot.isStatut(),lot.getCategorie().getId_categorie());
+        return new Message("OK");
+    
+    }
+        
 }
