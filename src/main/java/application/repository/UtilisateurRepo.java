@@ -15,7 +15,7 @@ public interface UtilisateurRepo extends JpaRepository<Utilisateur, Integer> {
     @Query(value = "SELECT MD5(cast(now() AS TEXT) || (SELECT email FROM utilisateur WHERE id_utilisateur = :id_utilisateur))", nativeQuery = true)
     public String generateToken(@Param("id_utilisateur") int id);
 
-    @Query(value = "SELECT * FROM utilisateur WHERE id_utilisateur = (:id_utilisateur)", nativeQuery = true)
+    @Query(value = "SELECT * FROM utilisateur WHERE id_utilisateur = :id_utilisateur", nativeQuery = true)
     public Utilisateur findById(@Param("id_utilisateur") int id);
 
 }
