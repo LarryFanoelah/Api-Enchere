@@ -38,7 +38,7 @@ public class Lot {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_utilisateur")
     private Utilisateur utilisateur;
-
+     
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_categorie")
     private Categorie categorie;

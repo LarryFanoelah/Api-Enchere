@@ -3,7 +3,6 @@ package application.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import application.models.Mise;
 import application.models.Rencherir;
 import application.service.MiseService;
 
@@ -25,5 +24,10 @@ public class MiseController {
     @GetMapping("")
     public ResponseEntity read() {
         return new ResponseEntity<>(this.miseService.lire(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id_lot}")
+    public ResponseEntity getUserMax(@PathVariable int id_lot) {
+        return new ResponseEntity<>(this.miseService.getUserMaxMontant(id_lot), HttpStatus.OK);
     }
 }

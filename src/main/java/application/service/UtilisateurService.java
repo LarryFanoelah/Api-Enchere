@@ -22,10 +22,6 @@ public class UtilisateurService {
         return utilisateurRepo.login(utilisateur.getEmail(), utilisateur.getMdp());
     }
 
-    public Utilisateur findById(int idUtilisateur) {
-        return utilisateurRepo.findById(idUtilisateur);
-    }
-
     // public void generateToken(Utilisateur utilisateur) {
     // tokenRepo.insertToken(utilisateurRepo.generateToken(utilisateur.getId_utilisateur()),
     // LocalDateTime.now().plus(3, ChronoUnit.HOURS),
