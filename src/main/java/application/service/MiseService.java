@@ -1,27 +1,20 @@
 package application.service;
 
 import java.util.ArrayList;
-import application.models.Message;
 import application.models.Mise;
 import application.models.Rencherir;
-import application.repository.LotRepo;
 import application.repository.MiseRepo;
-import application.repository.UtilisateurRepo;
 
 @org.springframework.stereotype.Service
 public class MiseService {
 
     public final MiseRepo miseRepo;
-    public final LotRepo lotRepo;
-    public final UtilisateurRepo utilisateurRepo;
 
-    public MiseService(MiseRepo miseRepo, LotRepo lotRepo, UtilisateurRepo utilisateurRepo) {
+    public MiseService(MiseRepo miseRepo) {
         this.miseRepo = miseRepo;
-        this.lotRepo = lotRepo;
-        this.utilisateurRepo = utilisateurRepo;
     }
 
-    public Message insert(Rencherir rencherir) {
+    public String insert(Rencherir rencherir) {
         String succes = "";
         Mise mise = new Mise();
         int count = this.miseRepo.countIdMise(rencherir.getLot().getId_lot());
@@ -56,7 +49,7 @@ public class MiseService {
                         mise.setUtilisateur(rencherir.getUtilisateur());
                         mise.setMontant(rencherir.getMontant());
                         this.miseRepo.AddSoldeForAnotherUser(max, idUserMaxMontant);
-                        this.miseRepo.minusSold(rencherir.getMontant(), rencherir.getUtilisateur().getId_utilisateur());
+                        this.miseRepo.minusSold(rencherir.getMontant(),rencherir.getUtilisateur().getId_utilisateur());
                         this.miseRepo.save(mise);
                         succes = "inssertion completer";
                     }
@@ -65,16 +58,7 @@ public class MiseService {
                 succes = "vous etes la propriete de cette enchere";
             }
         }
-        return new Message(succes);
-    }
-
-    public Mise getUserMaxMontant(int id_lot) {
-        int idTop = this.miseRepo.getIdTop(id_lot);
-        Mise max = new Mise();
-        max.setLot(this.lotRepo.findById(id_lot));
-        max.setUtilisateur(this.utilisateurRepo.findById(idTop));
-        max.setMontant(this.miseRepo.maxMontant(id_lot));
-        return max;
+        return succes;
     }
 
     public ArrayList<Mise> lire() {
