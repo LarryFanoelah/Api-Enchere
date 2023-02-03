@@ -43,6 +43,7 @@ public class Lot {
     @JoinColumn(name = "id_categorie")
     private Categorie categorie;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id_images")
+    @Transient
     private List<Image> images;
+    
 }

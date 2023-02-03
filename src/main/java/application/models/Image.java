@@ -1,27 +1,46 @@
 package application.models;
 
-import javax.persistence.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import application.utils.annotation.IdTable;
-import lombok.*;
+import javax.persistence.Id;
 
-@Entity
-@IdTable
-@Setter
-@Getter
-@Table(name = "images")
+@Document(collection = "image")
 public class Image {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_images;
+    private String id;
+    private String idLot;
+    private String source;
 
-    @Column(name = "src")
-    private String src;
+    public Image() {
+    }
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_lot")
-    @MapsId("id_images")
-    @JsonIgnore
-    private Lot lot;
+    public Image(String id, String idLot, String source) {
+        this.id = id;
+        this.idLot = idLot;
+        this.source = source;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getIdLot() {
+        return idLot;
+    }
+
+    public void setIdLot(String idLot) {
+        this.idLot = idLot;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
 }
