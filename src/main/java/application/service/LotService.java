@@ -87,7 +87,6 @@ public class LotService {
     public Message save (Lot lot) throws Exception{
         this.lotRepo.insertEnchere(lot.getDure(),lot.getPrixMinimal(),lot.getUtilisateur().getId_utilisateur(),lot.getNom(),lot.getDescri(),lot.isStatut(),lot.getCategorie().getId_categorie());
         return new Message("OK");
-    
     }
         
 }
